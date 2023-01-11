@@ -11,7 +11,7 @@ const Home = () => {
         </button>
       </div>
       <div className=''>
-        <img src="https://static.vecteezy.com/system/resources/previews/011/064/636/non_2x/cryptocurrency-3d-illustration-free-png.png" alt="pic1" className='h-[700px]'/>
+        <img src="https://static.vecteezy.com/system/resources/previews/011/064/655/non_2x/cryptocurrency-3d-illustration-free-png.png" alt="pic1" className='h-[700px] w-[900px]'/>
       </div>
     </div>
   )
