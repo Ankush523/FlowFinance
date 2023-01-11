@@ -9,7 +9,7 @@ const Navbar = () => {
         <label className="font-poppins font-medium text-green1  text-4xl">flow</label>
       </div>
       <div className="flex flex-row gap-3">
-        <a>
+        <a href="https://github.com/Ankush523/FlowFinance">
           <div className="flex flex-row space-x-1 items-center border border-green1 px-5 py-1 rounded-xl">
             <img
               src={Github}
