@@ -1,5 +1,6 @@
 import React from "react";
 import Logo from "./images/Logo.png";
+import Github from "./images/github1.png";
 const Navbar = () => {
   return (
     <div className="flex flex-row justify-between w-[100vw] h-[fit-content] px-[100px] py-[50px]">
@@ -11,7 +12,7 @@ const Navbar = () => {
         <a>
           <div className="flex flex-row space-x-1 items-center border border-green1 px-5 py-1 rounded-xl">
             <img
-              src="https://img.icons8.com/sf-regular-filled/512/github.png"
+              src={Github}
               alt="github"
               className="h-[35px] w-[35px]"
             />
