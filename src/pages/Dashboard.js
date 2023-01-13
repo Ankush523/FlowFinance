@@ -55,6 +55,7 @@ const Dashboard = () => {
                     Lend
                 </p>
                 </div>
+                <h1>hi</h1>
           </button>
 
           <button onClick={() => setSelection(4)}>
