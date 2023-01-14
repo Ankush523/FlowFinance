@@ -6,6 +6,7 @@ import lend from "../components/images/lendtoken.png";
 import coins from "../components/images/coins.png";
 import stream from "../components/images/stream.png";
 import Streams from "../components/Streams";
+import Borrow from "../components/Borrow";
 
 const Dashboard = () => {
 
@@ -70,13 +71,11 @@ const Dashboard = () => {
 
       <div className="h-[100vh] w-[82%] flex flex-col justify-center px-4">     
             {
-                selection == '1' ? <label>Welcome</label> : selection == '2' ? (
-                    <div>
-                        <Streams/>
-                    </div>
-                ):
-                <label>Sorry</label>
-            }
+                selection == '1' ? <label>Welcome</label> : 
+                selection == '2' ? <div><Streams/></div> :
+                selection == '3' ? <label>Upcoming</label> :
+                <div><Borrow/></div>
+              }
       </div>
     </div>
   );

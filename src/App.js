@@ -3,7 +3,6 @@ import './App.css';
 import { BrowserRouter,Routes,Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
-import Streams from './components/Streams';
 
 function App() {
   return (
@@ -12,7 +11,6 @@ function App() {
         <Routes>
           <Route path='/' element={<Home/>}/>
           <Route path='/dashboard' element={<Dashboard/>}/>
-          <Route path='/streams' element={<Streams/>}/>
         </Routes>
       </BrowserRouter>
     </div>
