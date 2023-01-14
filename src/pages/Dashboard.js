@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import logo from "../components/images/logo1.png";
 import wallet from "../components/images/wallet5.png";
 import dashboard from "../components/images/dashboard.png";
-import lend from "../components/images/lend.png";
-import borrow from "../components/images/borrow.png";
+import lend from "../components/images/lendtoken.png";
+import coins from "../components/images/coins.png";
 import stream from "../components/images/stream.png";
 import Streams from "../components/Streams";
 
@@ -59,7 +59,7 @@ const Dashboard = () => {
 
           <button onClick={() => setSelection(4)}>
                 <div className="flex flex-row space-x-2 items-center pl-[8px] rounded-xl mx-[10px] hover:bg-green1/10 py-[8px]  mt-[10px]">
-                <img src={borrow} alt="dashboard" className="h-[35px] p-[5px] bg-white1/20 rounded-md" />
+                <img src={coins} alt="dashboard" className="h-[35px] p-[5px] bg-white1/20 rounded-md" />
                 <p className="font-poppins text-sm font-medium text-green3">
                     Borrow
                 </p>
