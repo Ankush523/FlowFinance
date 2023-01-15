@@ -19,25 +19,41 @@ const Borrow = () => {
                 </div>
             </div>
         </div>
-        
+
         <div className='w-[65%] h-[fit-content] bg-white1 shadow-xl rounded-2xl'>
-            <div className='flex flex-col px-[30px] space-y-4 py-[30px]'>
-                <label className='text-left bg-green1/10 w-[fit-content] p-[10px] rounded-xl text-green1 font-poppins font-semibold text-xl'>Borrow Order</label>
-                <div className='flex flex-col'>
-                    <label>How much do you want to borrow?</label>
-                    <div>
-                        <input className='' placeholder='0.0000000...'/>
+            <div className='flex flex-col px-[30px] py-[30px]'>
+                <label className='p-[10px] mb-[5px] text-green3 font-poppins font-semibold text-2xl border-b border-black1/10'>Borrow Order</label>
+                <div className='flex flex-row justify-between px-[50px] mt-[20px]'>
+                    <label className='text-xl font-poppins text-green1 pt-[12px]'>How much do you want to borrow?</label>
+                    <div className='flex flex-row rounded-xl h-[50px]'>
+                        <div className='w-[30%] py-[12px] px-[10px] bg-green3 rounded-l-xl'>
+                            <label className='font-poppins text-white1'>DAI</label>
+                        </div>
+                        <div className='border border-green3 '>
+                            <input className='bg-white1 my-[12px] px-[10px]' placeholder='0.0000000...'/>
+                        </div>
+                        <div className='w-[30%] py-[12px] px-[10px] bg-green3/20 rounded-r-xl'>
+                            <label className='font-poppins text-green3'>MAX</label>
+                        </div>
                     </div>
                 </div>
 
-                <div className='flex flex-col'>
-                    <label>Specify collateral to deposit</label>
-                    <div>
-                        <input className='' placeholder='0.0000000...'/>
+                <div className='flex flex-row justify-between px-[50px] mt-[20px]'>
+                <label className='text-xl font-poppins text-green1 pt-[12px]'>Specify Collateral to deposit</label>
+                    <div className='flex flex-row rounded-xl h-[50px]'>
+                        <div className='w-[30%] py-[12px] px-[10px] bg-green3 rounded-l-xl'>
+                            <label className='font-poppins text-white1'>ETH</label>
+                        </div>
+                        <div className='border border-green3 '>
+                            <input className='bg-white1 my-[12px] px-[10px]' placeholder='0.0000000...'/>
+                        </div>
+                        <div className='w-[30%] py-[12px] px-[10px] bg-green3/20 rounded-r-xl'>
+                            <label className='font-poppins text-green3'>MAX</label>
+                        </div>
                     </div>
                 </div>
 
-                <button>Confirm and Submit</button>
+                <button className='rounded-xl border border-green3 mt-[30px] mx-[310px] p-[10px] font-poppins bg-green3 text-white1'>Confirm and Submit</button>
             </div>
         </div>
     </div>
