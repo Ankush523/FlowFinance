@@ -7,6 +7,7 @@ import coins from "../components/images/coins.png";
 import stream from "../components/images/stream.png";
 import Streams from "../components/Streams";
 import Borrow from "../components/Borrow";
+import Lend from "../components/Lend";
 
 const Dashboard = () => {
 
@@ -73,7 +74,7 @@ const Dashboard = () => {
             {
                 selection == '1' ? <label>Welcome</label> : 
                 selection == '2' ? <div><Streams/></div> :
-                selection == '3' ? <label>Upcoming</label> :
+                selection == '3' ? <div><Lend/></div> :
                 <div><Borrow/></div>
               }
       </div>
