@@ -33,7 +33,7 @@ const Borrow = () => {
                             <input className='bg-white1 my-[12px] px-[10px]' placeholder='0.0000000...'/>
                         </div>
                         <div className='w-[30%] py-[12px] px-[10px] bg-green3/20 rounded-r-xl'>
-                            <label className='font-poppins text-green3'>MAX</label>
+                            <button className='font-poppins text-green3'>MAX</button>
                         </div>
                     </div>
                 </div>
@@ -48,7 +48,7 @@ const Borrow = () => {
                             <input className='bg-white1 my-[12px] px-[10px]' placeholder='0.0000000...'/>
                         </div>
                         <div className='w-[30%] py-[12px] px-[10px] bg-green3/20 rounded-r-xl'>
-                            <label className='font-poppins text-green3'>MAX</label>
+                            <button className='font-poppins text-green3'>MAX</button>
                         </div>
                     </div>
                 </div>
