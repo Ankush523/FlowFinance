@@ -9,7 +9,7 @@ import Streams from "../components/Streams";
 import Borrow from "../components/Borrow";
 import Lend from "../components/Lend";
 
-const Dashboard = () => {
+const Elements = () => {
 
     const[selection, setSelection] = useState('1');
 
@@ -82,4 +82,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default Elements;
