@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import Elements from './pages/Elements';
 import Streams from './components/Streams';
 import Borrow from './components/Borrow';
+import Dashboard from './components/Dashboard';
 
 function App() {
   return (
@@ -11,7 +12,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Home/>}/>
-          <Route path='/dashboard' element={<Elements/>}/>
+          <Route path='/elements' element={<Elements/>}/>
+          <Route path='/dashboard' element={<Dashboard/>}/>
           <Route path='/streams' element={<Streams/>}/>
           <Route path='/borrow' element={<Borrow/>}/>
         </Routes>

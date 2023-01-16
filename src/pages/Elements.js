@@ -8,6 +8,7 @@ import stream from "../components/images/stream.png";
 import Streams from "../components/Streams";
 import Borrow from "../components/Borrow";
 import Lend from "../components/Lend";
+import Dashboard from "../components/Dashboard";
 
 const Elements = () => {
 
@@ -72,7 +73,7 @@ const Elements = () => {
 
       <div className="h-[100vh] w-[82%] flex flex-col justify-center px-4">     
             {
-                selection == '1' ? <label>Welcome</label> : 
+                selection == '1' ? <div><Dashboard/></div> : 
                 selection == '2' ? <div><Streams/></div> :
                 selection == '3' ? <div><Lend/></div> :
                 <div><Borrow/></div>

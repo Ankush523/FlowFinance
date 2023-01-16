@@ -20,7 +20,7 @@ const Navbar = () => {
           </div>
         </a>
         <button className="bg-green1 rounded-xl text-white1 font-poppins font-semibold px-[20px] hover:bg-green3">
-          <a href="/dashboard">Launch App</a>
+          <a href="/elements">Launch App</a>
         </button>
       </div>
     </div>
