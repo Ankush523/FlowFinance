@@ -5,6 +5,7 @@ import Elements from './pages/Elements';
 import Streams from './components/Streams';
 import Borrow from './components/Borrow';
 import Dashboard from './components/Dashboard';
+import Lend from './components/Lend';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path='/dashboard' element={<Dashboard/>}/>
           <Route path='/streams' element={<Streams/>}/>
           <Route path='/borrow' element={<Borrow/>}/>
+          <Route path='/lend' element={<Lend/>}/>
         </Routes>
       </BrowserRouter>
     </div>
