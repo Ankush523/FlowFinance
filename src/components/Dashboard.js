@@ -1,8 +1,8 @@
 import React from 'react'
-
 const Dashboard = () => {
   return (
     <div className='flex flex-col'>
+           
         <label className='font-poppins text-2xl text-black1 font-medium mb-[50px]'>Connect to flow</label>
 
         <div className='flex flex-row justify-center space-x-6 mb-[30px]'>
