@@ -30,9 +30,9 @@ const Elements = () => {
                 alt="wallet"
                 className="h-[35px] p-[5px] bg-white1/20 rounded-md"
               />
-              <p className="font-poppins text-sm font-medium text-white1">                
+              <div className="font-poppins text-sm font-medium text-white1">                
                 <ConnectButton accountStatus="address" chainStatus="none"  showBalance={false} />
-              </p>
+              </div>
             </div>
           </button>
 
