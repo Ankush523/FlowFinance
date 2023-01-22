@@ -2,8 +2,9 @@
 
 pragma solidity ^0.8.0;
 
-import "https://github.com/OpenZeppelin/openzeppelin-solidity/contracts/token/ERC20/SafeERC20.sol";
-import "https://github.com/OpenZeppelin/openzeppelin-solidity/contracts/math/SafeMath.sol";
+import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
+import "@openzeppelin/contracts/utils/math/SafeMath.sol";
+import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 
 contract NFTLending {
     using SafeERC20 for IERC20;
@@ -11,6 +12,7 @@ contract NFTLending {
 
     address public owner;
     IERC20 public stablecoin;
+    ERC721 public currentnft;
     mapping (address => uint) public balances;
     mapping (uint => bool) public nfts;
     mapping (uint => address) public nftOwners;
@@ -20,16 +22,19 @@ contract NFTLending {
         stablecoin = _stablecoin;
     }
 
+    function addNft(address _nftaddr, uint256 _id) public {
+        currentnft = ERC721(_nftaddr);
+        nftOwners[_id]=msg.sender;
+    }
+
     function lend(uint _nftId) public {
-        require(nftOwners[_nftId] == msg.sender, "NFT is not owned by the borrower.");
-        require(!nfts[_nftId], "NFT is already used as collateral.");
+        // require(nftOwners[_nftId] == msg.sender, "NFT is not owned by the borrower.");
+        // require(!nfts[_nftId], "NFT is already used as collateral.");
 
         nfts[_nftId] = true;
         nftOwners[_nftId] = msg.sender;
 
-        uint amount = stablecoin.balanceOf(msg.sender);
-        stablecoin.transfer(address(this), amount);
-        balances[msg.sender] = amount;
+        stablecoin.transferFrom(msg.sender,address(this), 100);
     }
 
     function repay(uint _nftId) public {
