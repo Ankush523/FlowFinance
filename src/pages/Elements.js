@@ -53,7 +53,7 @@ const Elements = () => {
             <div className="flex flex-row space-x-2 items-center pl-[8px] rounded-xl mx-[10px] hover:bg-green1/10 py-[8px]  mt-[10px]">
               <img
                 src={stream}
-                alt="dashboard"
+                alt="stream"
                 className="h-[35px] p-[5px] bg-white1/20 rounded-md"
               />
               <p className="font-poppins text-sm font-medium text-green3">
@@ -66,7 +66,7 @@ const Elements = () => {
             <div className="flex flex-row space-x-2 items-center pl-[8px] rounded-xl mx-[10px] hover:bg-green1/10 py-[8px]  mt-[10px]">
               <img
                 src={lend}
-                alt="dashboard"
+                alt="lend"
                 className="h-[35px] p-[5px] bg-white1/20 rounded-md"
               />
               <p className="font-poppins text-sm font-medium text-green3">
@@ -79,7 +79,7 @@ const Elements = () => {
             <div className="flex flex-row space-x-2 items-center pl-[8px] rounded-xl mx-[10px] hover:bg-green1/10 py-[8px]  mt-[10px]">
               <img
                 src={coins}
-                alt="dashboard"
+                alt="borrow"
                 className="h-[35px] p-[5px] bg-white1/20 rounded-md"
               />
               <p className="font-poppins text-sm font-medium text-green3">
