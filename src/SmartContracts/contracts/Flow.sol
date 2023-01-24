@@ -9,7 +9,7 @@ import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 contract NFTLending {
     using SafeERC20 for IERC20;
     using SafeMath for uint256;
-
+    uint public borrowAmount;
     address public owner;
     IERC20 public stablecoin;
     ERC721 public currentnft;
@@ -27,17 +27,31 @@ contract NFTLending {
         nftOwners[_id]=msg.sender;
     }
 
-    function lend(uint _nftId) public {
+    function lend(uint _borrowAmount) public {
+        // require(nftOwners[_nftId] == msg.sender, "NFT is not owned by the borrower.");
+        // require(!nfts[_nftId], "NFT is already used as collateral.");
+
+        // nfts[_nftId] = true;
+        // nftOwners[_nftId] = msg.sender;
+        _borrowAmount = borrowAmount;
+        uint amount = stablecoin.balanceOf(msg.sender);
+        require(_borrowAmount < amount, "Low Balance");
+        stablecoin.transferFrom(msg.sender,address(this), _borrowAmount);
+    }
+
+    function borrow(uint256 _nftId, uint _borrowAmount) public {
         require(nftOwners[_nftId] == msg.sender, "NFT is not owned by the borrower.");
         require(!nfts[_nftId], "NFT is already used as collateral.");
+
         nfts[_nftId] = true;
         nftOwners[_nftId] = msg.sender;
-        stablecoin.transferFrom(msg.sender,address(this), 100);
+        stablecoin.transferFrom(address(this), msg.sender, _borrowAmount);
     }
 
     function repay(uint _nftId) public {
         require(nftOwners[_nftId] == msg.sender, "NFT is not owned by the borrower.");
         require(nfts[_nftId], "NFT is not being used as collateral.");
+
         stablecoin.transfer(msg.sender, balances[msg.sender]);
         balances[msg.sender] = 0;
         nftOwners[_nftId] = address(0);
@@ -47,6 +61,7 @@ contract NFTLending {
     function liquidate(uint _nftId) public {
         require(nfts[_nftId], "NFT is not being used as collateral.");
         require(nftOwners[_nftId] != msg.sender, "NFT is not owned by the lender.");
+
         stablecoin.transfer(msg.sender, balances[nftOwners[_nftId]]);
         nftOwners[_nftId] = address(0);
         nfts[_nftId] = false;
