@@ -3,7 +3,6 @@ import { customHttpProvider } from "./config";
 import { Framework } from "@superfluid-finance/sdk-core";
 import { Button, Form, FormGroup, FormControl, Spinner } from "react-bootstrap";
 import "./revokeFlow.css";
-import { ethers } from "ethers";
 
 //where the Superfluid logic takes place
 async function revokeFlowPermissions(operator) {
