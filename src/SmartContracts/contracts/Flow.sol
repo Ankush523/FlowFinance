@@ -17,7 +17,7 @@ contract NFTLending {
     mapping (uint => bool) public nfts;
     mapping (uint => address) public nftOwners;
 
-    constructor(IERC20 _stablecoin) public {
+    constructor(IERC20 _stablecoin) {
         owner = msg.sender;
         stablecoin = _stablecoin;
     }
@@ -27,25 +27,17 @@ contract NFTLending {
         nftOwners[_id]=msg.sender;
     }
 
-    function lend(uint _borrowAmount) public {
+    function lend(uint256 _borrowAmount) public {
+        stablecoin.transferFrom(msg.sender, address(this), _borrowAmount);
+    }
+
+    function borrow(uint256 _nftId, uint _borrowAmount) public {
         // require(nftOwners[_nftId] == msg.sender, "NFT is not owned by the borrower.");
         // require(!nfts[_nftId], "NFT is already used as collateral.");
 
         // nfts[_nftId] = true;
         // nftOwners[_nftId] = msg.sender;
-        _borrowAmount = borrowAmount;
-        uint amount = stablecoin.balanceOf(msg.sender);
-        require(_borrowAmount < amount, "Low Balance");
-        stablecoin.transferFrom(msg.sender,address(this), _borrowAmount);
-    }
-
-    function borrow(uint256 _nftId, uint _borrowAmount) public {
-        require(nftOwners[_nftId] == msg.sender, "NFT is not owned by the borrower.");
-        require(!nfts[_nftId], "NFT is already used as collateral.");
-
-        nfts[_nftId] = true;
-        nftOwners[_nftId] = msg.sender;
-        stablecoin.transferFrom(address(this), msg.sender, _borrowAmount);
+        stablecoin.transfer( msg.sender, _borrowAmount);
     }
 
     function repay(uint _nftId) public {
