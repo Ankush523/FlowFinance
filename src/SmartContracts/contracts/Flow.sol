@@ -7,7 +7,7 @@ import { SuperTokenV1Library } from "@superfluid-finance/ethereum-contracts/cont
 import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-
+import "./IFlowToken.sol";
 abstract contract NFTLending {
 
     using SafeERC20 for IERC20;
@@ -28,7 +28,7 @@ abstract contract NFTLending {
     mapping (uint => bool) public nfts;
     mapping (uint => address) public nftOwners;
     mapping (address => uint256) public loanAmount;
-    mapping(address =>mapping(uint256 => address)) lenders;
+    mapping (address =>mapping(uint256 => address)) lenders;
 
     constructor(ISuperToken _flowTokenX, IERC20 _flowToken) {
         owner = msg.sender;
