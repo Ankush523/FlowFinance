@@ -94,7 +94,7 @@ contract NFTLending {
         // int256 rate = int256(((interestrate * loanAmount[msg.sender])/(100) + loanAmount[msg.sender])/31536000);  
         int256 rate = 100000;
         int96 flowrate = int96(rate);
-        createFlowToContract(lenders[msg.sender][_nftId],flowrate);
+        createFlowToContract(lenders[msg.sender][_nftId],0xCF1E6Ab1949D0573362f5278FAbCa4Ec74BE913C,flowrate);
     }
 
     function liquidate(uint _nftId) public {
