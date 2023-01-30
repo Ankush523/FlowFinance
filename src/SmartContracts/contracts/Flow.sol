@@ -49,30 +49,25 @@ contract NFTLending {
     /// @notice Create flow from contract to specified address.
     /// @param receiver Receiver of stream.
     /// @param flowRate Flow rate per second to stream.
-    function createFlowToContract(
-        address receiver,
-        int96 flowRate
-    ) public {
 
-        flowTokenX.createFlow(receiver, flowRate);
+    function createFlowToContract(address sender, address receiver, int96 flowRate) public {
+        flowTokenX.createFlowFrom(sender, receiver, flowRate);
     }
 
     /// @notice Update flow from contract to specified address.
     /// @param receiver Receiver of stream.
     /// @param flowRate Flow rate per second to stream.
-    function updateFlowToContract(
-        address receiver,
-        int96 flowRate
-    ) public {
 
-        flowTokenX.updateFlow(receiver, flowRate);
+    function updateFlowToContract(address sender, address receiver, int96 flowRate) public {
+        // flowTokenX.updateFlow(receiver, flowRate);
+        flowTokenX.updateFlowFrom(sender, receiver, flowRate);
     }
 
     /// @notice Delete flow from contract to specified address.
     /// @param receiver Receiver of stream.
-    function deleteFlowToContract(address receiver) public {
 
-        flowTokenX.deleteFlow(address(this), receiver);
+    function deleteFlowToContract(address sender, address receiver) public {
+        flowTokenX.deleteFlowFrom(sender, receiver);
     }
 
     function createOperator(address _opaddr) public {
@@ -96,9 +91,10 @@ contract NFTLending {
     function repay(uint _nftId, uint256 _repayAmount) public {
         flowToken.transfer(lenders[msg.sender][_nftId], _repayAmount);
         loanAmount[msg.sender]-=_repayAmount;
-        int256 rate = int256(((interestrate * loanAmount[msg.sender])/(100) + loanAmount[msg.sender])/31536000);  
+        // int256 rate = int256(((interestrate * loanAmount[msg.sender])/(100) + loanAmount[msg.sender])/31536000);  
+        int256 rate = 100000;
         int96 flowrate = int96(rate);
-        createFlowToContract(address(this),flowrate);
+        createFlowToContract(lenders[msg.sender][_nftId],flowrate);
     }
 
     function liquidate(uint _nftId) public {
