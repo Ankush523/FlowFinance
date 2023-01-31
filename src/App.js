@@ -6,6 +6,7 @@ import Streams from './components/Streams';
 import Borrow from './components/Borrow';
 import Dashboard from './components/Dashboard';
 import Lend from './components/Lend';
+import Faucet from './components/Faucet';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path='/streams' element={<Streams/>}/>
           <Route path='/borrow' element={<Borrow/>}/>
           <Route path='/lend' element={<Lend/>}/>
+          <Route path='faucet' element={<Faucet/>}/>
         </Routes>
       </BrowserRouter>
     </div>

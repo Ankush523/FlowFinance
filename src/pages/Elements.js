@@ -5,11 +5,15 @@ import dashboard from "../components/images/dashboard.png";
 import lend from "../components/images/lendtoken.png";
 import coins from "../components/images/coins.png";
 import stream from "../components/images/stream.png";
+import faucet from "../components/images/faucet.png";
+import notifs from "../components/images/notifs.png";
 import Streams from "../components/Streams";
 import Borrow from "../components/Borrow";
 import Lend from "../components/Lend";
 import Dashboard from "../components/Dashboard";
 import { ConnectButton } from '@rainbow-me/rainbowkit';
+import Faucet from "../components/Faucet";
+import Notifs from "../components/Notifs";
 
 
 const Elements = () => {
@@ -87,6 +91,28 @@ const Elements = () => {
               </p>
             </div>
           </button>
+
+          <button onClick={() => setSelection(5)}>
+            <div className="flex flex-row space-x-2 items-center pl-[8px] rounded-xl mx-[10px] hover:bg-green1/10 py-[8px]  mt-[10px]">
+              <img src={faucet}
+                alt="faucet"
+                className="h-[35px] p-[5px] bg-white1/20 rounded-md"/>
+              <p className="font-poppins text-sm font-medium text-green3">
+                Faucet
+              </p>
+            </div>
+          </button>
+
+          <button onClick={() => setSelection(6)}>
+            <div className="flex flex-row space-x-2 items-center pl-[8px] rounded-xl mx-[10px] hover:bg-green1/10 py-[8px]  mt-[10px]">
+              <img src={notifs}
+                alt="notifs"
+                className="h-[35px] p-[5px] bg-white1/20 rounded-md"/>
+              <p className="font-poppins text-sm font-medium text-green3">
+                Notifications
+              </p>
+            </div>
+          </button>
         </div>
       </div>
 
@@ -104,14 +130,22 @@ const Elements = () => {
             <div>
               <Lend />
             </div>
-          ) : (
+          ) : selection == "4" ? (
             <div>
               <Borrow />
             </div>
-          )}
-        </div>
+          ) :  selection == "5" ? (
+            <div>
+              <Faucet />
+            </div>
+          ) : (
+            <div>
+              <Notifs />
+            </div>
+          )
+        }
+      </div>
     </div>
   );
 };
-
 export default Elements;
