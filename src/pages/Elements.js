@@ -7,6 +7,7 @@ import coins from "../components/images/coins.png";
 import stream from "../components/images/stream.png";
 import faucet from "../components/images/faucet.png";
 import notifs from "../components/images/notifs.png";
+import wrap from "../components/images/wrap.png";
 import Streams from "../components/Streams";
 import Borrow from "../components/Borrow";
 import Lend from "../components/Lend";
@@ -14,6 +15,7 @@ import Dashboard from "../components/Dashboard";
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import Faucet from "../components/Faucet";
 import Notifs from "../components/Notifs";
+import Wrap from "../components/Wrap";
 
 
 const Elements = () => {
@@ -54,6 +56,17 @@ const Elements = () => {
           </button>
 
           <button onClick={() => setSelection(2)}>
+            <div className="flex flex-row space-x-2 items-center pl-[8px] rounded-xl mx-[10px] hover:bg-green1/10 py-[8px]  mt-[20px]">
+              <img src={wrap}
+                alt="wrap"
+                className="h-[35px] p-[5px] bg-white1/20 rounded-md"/>
+              <p className="font-poppins text-sm font-medium text-green3">
+                Wrap/Unwrap
+              </p>
+            </div>
+          </button>
+
+          <button onClick={() => setSelection(3)}>
             <div className="flex flex-row space-x-2 items-center pl-[8px] rounded-xl mx-[10px] hover:bg-green1/10 py-[8px]  mt-[10px]">
               <img
                 src={stream}
@@ -66,7 +79,7 @@ const Elements = () => {
             </div>
           </button>
 
-          <button onClick={() => setSelection(3)}>
+          <button onClick={() => setSelection(4)}>
             <div className="flex flex-row space-x-2 items-center pl-[8px] rounded-xl mx-[10px] hover:bg-green1/10 py-[8px]  mt-[10px]">
               <img
                 src={lend}
@@ -79,7 +92,7 @@ const Elements = () => {
             </div>
           </button>
 
-          <button onClick={() => setSelection(4)}>
+          <button onClick={() => setSelection(5)}>
             <div className="flex flex-row space-x-2 items-center pl-[8px] rounded-xl mx-[10px] hover:bg-green1/10 py-[8px]  mt-[10px]">
               <img
                 src={coins}
@@ -92,7 +105,7 @@ const Elements = () => {
             </div>
           </button>
 
-          <button onClick={() => setSelection(5)}>
+          <button onClick={() => setSelection(6)}>
             <div className="flex flex-row space-x-2 items-center pl-[8px] rounded-xl mx-[10px] hover:bg-green1/10 py-[8px]  mt-[10px]">
               <img src={faucet}
                 alt="faucet"
@@ -103,7 +116,7 @@ const Elements = () => {
             </div>
           </button>
 
-          <button onClick={() => setSelection(6)}>
+          <button onClick={() => setSelection(7)}>
             <div className="flex flex-row space-x-2 items-center pl-[8px] rounded-xl mx-[10px] hover:bg-green1/10 py-[8px]  mt-[10px]">
               <img src={notifs}
                 alt="notifs"
@@ -124,17 +137,21 @@ const Elements = () => {
             </div>
           ) : selection == "2" ? (
             <div>
-              <Streams />
+              <Wrap />
             </div>
           ) : selection == "3" ? (
             <div>
-              <Lend />
+              <Streams />
             </div>
           ) : selection == "4" ? (
             <div>
+              <Lend />
+            </div>
+          ) : selection == "5" ? (
+            <div>
               <Borrow />
             </div>
-          ) :  selection == "5" ? (
+          ) :  selection == "6" ? (
             <div>
               <Faucet />
             </div>

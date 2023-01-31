@@ -7,6 +7,7 @@ import Borrow from './components/Borrow';
 import Dashboard from './components/Dashboard';
 import Lend from './components/Lend';
 import Faucet from './components/Faucet';
+import Wrap from './components/Wrap';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path='/borrow' element={<Borrow/>}/>
           <Route path='/lend' element={<Lend/>}/>
           <Route path='faucet' element={<Faucet/>}/>
+          <Route path='wrap' element={<Wrap/>}/>
         </Routes>
       </BrowserRouter>
     </div>
