@@ -20,8 +20,8 @@ function App() {
           <Route path='/streams' element={<Streams/>}/>
           <Route path='/borrow' element={<Borrow/>}/>
           <Route path='/lend' element={<Lend/>}/>
-          <Route path='faucet' element={<Faucet/>}/>
-          <Route path='wrap' element={<Wrap/>}/>
+          <Route path='/faucet' element={<Faucet/>}/>
+          <Route path='/wrap' element={<Wrap/>}/>
         </Routes>
       </BrowserRouter>
     </div>
