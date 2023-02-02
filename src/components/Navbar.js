@@ -1,6 +1,6 @@
 import React from "react";
-import logo from "../images/logo1.png";
-import Github from "../images/github1.png";
+import logo from "../components/images/logo1.png";
+import Github from "../components/images/github1.png";
 const Navbar = () => {
   return (
     <div className="flex flex-row justify-between w-[100vw] h-[fit-content] px-[100px] py-[50px]">
