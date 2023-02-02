@@ -30,7 +30,7 @@ const Borrow = () => {
                             <label className='font-poppins text-white1'>DAI</label>
                         </div>
                         <div className='border border-green3 '>
-                            <input className='bg-white1 my-[12px] px-[10px]' placeholder='0.0000000...'/>
+                            <input className='bg-white1 py-[12px] px-[10px]' placeholder='0.0000000...'/>
                         </div>
                         <div className='w-[30%] py-[12px] px-[10px] bg-green3/20 rounded-r-xl'>
                             <button className='font-poppins text-green3'>MAX</button>
@@ -45,7 +45,7 @@ const Borrow = () => {
                             <label className='font-poppins text-white1'>ETH</label>
                         </div>
                         <div className='border border-green3 '>
-                            <input className='bg-white1 my-[12px] px-[10px]' placeholder='0.0000000...'/>
+                            <input className='bg-white1 py-[12px] px-[10px]' placeholder='0.0000000...'/>
                         </div>
                         <div className='w-[30%] py-[12px] px-[10px] bg-green3/20 rounded-r-xl'>
                             <button className='font-poppins text-green3'>MAX</button>
@@ -53,7 +53,7 @@ const Borrow = () => {
                     </div>
                 </div>
 
-                <button className='rounded-xl border border-green3 mt-[30px] mx-[310px] p-[10px] font-poppins bg-green3 text-white1'>Confirm and Submit</button>
+                <button className='rounded-xl text-white1/60 font-poppins font-semibold text-md mt-[30px] mx-[310px] p-[10px] bg-green3/80 hover:bg-green3 hover:text-white1'>Confirm and Submit</button>
             </div>
         </div>
     </div>
