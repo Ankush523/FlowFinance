@@ -12,7 +12,7 @@ import {
 
 // import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "./IERC721.sol";
-contract NFTLending {
+contract Flow {
 
     using SafeERC20 for IERC20;
     using SafeMath for uint256;
