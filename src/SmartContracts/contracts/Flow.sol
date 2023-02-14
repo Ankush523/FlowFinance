@@ -1,108 +1,109 @@
-// SPDX-License-Identifier: GPL-3.0
+//SPDX-License-Identifier: Unlicense
+pragma solidity ^0.8.14;
 
-pragma solidity ^0.8.0;
+import {ISuperfluid, ISuperToken, ISuperApp} from "@superfluid-finance/ethereum-contracts/contracts/interfaces/superfluid/ISuperfluid.sol";
+import { SuperTokenV1Library } from "@superfluid-finance/ethereum-contracts/contracts/apps/SuperTokenV1Library.sol";
+error Unauthorized();
 
-import { ISuperfluid, ISuperToken, ISuperApp } from "@superfluid-finance/ethereum-contracts/contracts/interfaces/superfluid/ISuperfluid.sol";
-import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
-import "@openzeppelin/contracts/utils/math/SafeMath.sol";
-
-import {
-    SuperTokenV1Library
-} from "@superfluid-finance/ethereum-contracts/contracts/apps/SuperTokenV1Library.sol";
 
 // import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import "./IERC721.sol";
+// import "./IERC721.sol";
+
 contract Flow {
-
-    using SafeERC20 for IERC20;
-    using SafeMath for uint256;
-
+    address public owner;
     using SuperTokenV1Library for ISuperToken;
-    ISuperToken public flowTokenX;
+    ISuperToken public flowtoken;
     //fDAIx:0xF2d68898557cCb2Cf4C10c3Ef2B034b2a69DAD00
-   
-    IERC20 public flowToken;
     //fDAI:0x88271d333C72e51516B67f5567c728E702b3eeE8
 
     uint256 public interestrate = 10;
-    uint256 public borrowAmount;
-    uint256 public lendAmount;
-    address public owner;
-    IERC721 public currentnft;
-    mapping (address => uint) public balances;
-    mapping (uint => bool) public nfts;
-    mapping (uint => address) public nftOwners;
-    mapping (address => uint256) public loanAmount;
-    mapping (address =>mapping(uint256 => address)) lenders;
+    // IERC721 public currentnft;
+    // mapping (address => uint) public balances;
+    // mapping (uint => bool) public nfts;
+    // mapping (uint => address) public nftOwners;
+    // mapping (address => uint256) public loanAmount;
+    // mapping (address =>mapping(uint256 => address)) lenders;
 
-    constructor(ISuperToken _flowTokenX, IERC20 _flowToken) {
-        owner = msg.sender;
-        flowTokenX = _flowTokenX;
-        flowToken = _flowToken;
+    uint256 public bid;
+
+    struct Borrower {
+        uint256 bid;
+        string name;
+        address borrower;
+        uint256 time;
+        uint256 loanAmount;
     }
 
-    function addNft(address _nftaddr, uint256 _id) public {
-        currentnft = IERC721(_nftaddr);
-        nftOwners[_id]=msg.sender;
+    struct Lender {
+        address lender;
     }
 
-    /// @notice Create flow from contract to specified address.
-    /// @param receiver Receiver of stream.
-    /// @param flowRate Flow rate per second to stream.
+    mapping(uint => Borrower) public borrowers;
+    mapping(address => bool) public accountList;
+    mapping(address => Lender) public lenders;
 
-    function createFlowToContract(address sender, address receiver, int96 flowRate) public {
-        flowTokenX.createFlowFrom(sender, receiver, flowRate);
+
+    constructor(ISuperToken _flowtoken,address _owner) {
+        owner = _owner;
+        flowtoken = _flowtoken;
     }
 
-    /// @notice Update flow from contract to specified address.
-    /// @param receiver Receiver of stream.
-    /// @param flowRate Flow rate per second to stream.
-
-    function updateFlowToContract(address sender, address receiver, int96 flowRate) public {
-        // flowTokenX.updateFlow(receiver, flowRate);
-        flowTokenX.updateFlowFrom(sender, receiver, flowRate);
+    function allowAccount(address _account) external {
+        if (msg.sender != owner) revert Unauthorized();
+        accountList[_account] = true;
     }
 
-    /// @notice Delete flow from contract to specified address.
-    /// @param receiver Receiver of stream.
-
-    function deleteFlowToContract(address sender, address receiver) public {
-        flowTokenX.deleteFlowFrom(sender, receiver);
+    function createFlowFromContract(address receiver,int96 flowRate) public {
+        if (!accountList[msg.sender] && msg.sender != owner) revert Unauthorized();
+        flowtoken.createFlow(receiver, flowRate);
     }
 
-    function createOperator(address _opaddr) public {
-        flowTokenX.setMaxFlowPermissions(_opaddr);
+    function updateFlowFromContract(address receiver,int96 flowRate) internal {
+        if (!accountList[msg.sender] && msg.sender != owner) revert Unauthorized();
+        flowtoken.updateFlow(receiver, flowRate);
     }
 
-    function lend(address borrower, uint256 nftid) public {
-        require(flowToken.balanceOf(msg.sender)>=loanAmount[borrower], "Amount less than borrowing");
-        flowToken.transferFrom(msg.sender, address(this), loanAmount[borrower]);
-        lenders[borrower][nftid]=msg.sender;
+    function deleteFlowFromContract(address receiver) external {
+        if (!accountList[msg.sender] && msg.sender != owner) revert Unauthorized();
+        flowtoken.deleteFlow(address(this), receiver);
+    }
+
+    // function addNft(address _nftaddr, uint256 _id) public {
+    //     currentnft = IERC721(_nftaddr);
+    //     nftOwners[_id]=msg.sender;
+    // }
+
+    function lend(uint256 _bid, address _lender) public {
+        // require(flowToken.balanceOf(msg.sender)>=loanAmount[borrower], "Amount less than borrowing");
+        flowtoken.transferFrom(msg.sender, borrowers[_bid].borrower, borrowers[_bid].loanAmount);
+        lenders[_lender].lender = msg.sender; 
+        // lenders[borrower][nftid]=msg.sender;
     }
 
     function borrow(uint256 _nftId,uint256 _borrowAmount) public {
-        require(!nfts[_nftId], "NFT is already used as collateral.");
-        require(currentnft.ownerOf(_nftId) == msg.sender, "NFT is not owned by the owner");
-        nfts[_nftId] = true;
-        currentnft.transferFrom(msg.sender, address(this), _nftId);
-        loanAmount[msg.sender]=_borrowAmount;
+        // require(!nfts[_nftId], "NFT is already used as collateral.");
+        // require(currentnft.ownerOf(_nftId) == msg.sender, "NFT is not owned by the owner");
+        // nfts[_nftId] = true;
+        // currentnft.transferFrom(msg.sender, address(this), _nftId);
+        // loanAmount[msg.sender]=_borrowAmount;
     }
 
-    function repay(uint _nftId, uint256 _repayAmount) public {
-        flowToken.transfer(lenders[msg.sender][_nftId], _repayAmount);
-        loanAmount[msg.sender]-=_repayAmount;
-        // int256 rate = int256(((interestrate * loanAmount[msg.sender])/(100) + loanAmount[msg.sender])/31536000);  
-        int256 rate = 100000;
+    function repay(uint256 _bid, address _lender) public {
+        // flowToken.transfer(lenders[msg.sender][_nftId], _repayAmount);
+        // loanAmount[msg.sender]-=_repayAmount;
+        uint256 principle = borrowers[_bid].loanAmount;
+        uint256 time_in_seconds = ((borrowers[_bid].time)*30*24*3600);
+        int256 rate = int256( (principle + (( principle * borrowers[_bid].time * interestrate )/100)) / time_in_seconds ); 
         int96 flowrate = int96(rate);
-        createFlowToContract(lenders[msg.sender][_nftId],0xCF1E6Ab1949D0573362f5278FAbCa4Ec74BE913C,flowrate);
+        createFlowFromContract(lenders[_lender].lender,flowrate);
     }
 
-    function liquidate(uint _nftId) public {
-        require(nfts[_nftId], "NFT is not being used as collateral.");
-        require(nftOwners[_nftId] != msg.sender, "NFT is not owned by the lender.");
-        flowToken.transfer(msg.sender, balances[nftOwners[_nftId]]);
-        nftOwners[_nftId] = address(0);
-        nfts[_nftId] = false;
-        balances[nftOwners[_nftId]] = 0;
-    }
+    // function liquidate(uint _nftId) public {
+    //     require(nfts[_nftId], "NFT is not being used as collateral.");
+    //     require(nftOwners[_nftId] != msg.sender, "NFT is not owned by the lender.");
+    //     flowToken.transfer(msg.sender, balances[nftOwners[_nftId]]);
+    //     nftOwners[_nftId] = address(0);
+    //     nfts[_nftId] = false;
+    //     balances[nftOwners[_nftId]] = 0;
+    // }
 }
